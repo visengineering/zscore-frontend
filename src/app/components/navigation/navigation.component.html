@@ -1,0 +1,72 @@
+<mat-sidenav-container class="sidenav-container" autosize="true">
+  <mat-sidenav #drawer class="sidenav" mode="side" [opened]="opened">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-progress-spinner
+      *ngIf="answerLoading && questionLoading"
+      mode="indeterminate"
+      [diameter]="30"
+      class="sidenav-progress-bar"
+    ></mat-progress-spinner>
+    <mat-nav-list *ngIf="!(answerLoading && questionLoading)">
+      <div>
+        <button mat-icon-button (click)="showTGNav = !showTGNav">
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{ showTGNav ? 'expand_more' : 'chevron_right' }}
+          </mat-icon>
+        </button>
+        <span>Target Group</span>
+        <app-answer-tree
+          [isTGNavigation]="true"
+          [navigationTree]="answersNavigationTree"
+          [showError]="showError"
+          *ngIf="showTGNav"
+        ></app-answer-tree>
+      </div>
+      <div>
+        <button mat-icon-button (click)="showCGNav = !showCGNav">
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{ showCGNav ? 'expand_more' : 'chevron_right' }}
+          </mat-icon>
+        </button>
+        <span>Control Group</span>
+        <app-answer-tree
+          [isTGNavigation]="false"
+          [navigationTree]="answersNavigationTree"
+          *ngIf="showCGNav"
+          [showError]="showError"
+        ></app-answer-tree>
+      </div>
+      <div>
+        <button mat-icon-button (click)="showQuestionNav = !showQuestionNav">
+          <mat-icon class="mat-icon-rtl-mirror">
+            {{ showQuestionNav ? 'expand_more' : 'chevron_right' }}
+          </mat-icon>
+        </button>
+        <span>Variables</span>
+        <app-question-tree
+          [navigationTree]="questionsNavigationTree"
+          *ngIf="showQuestionNav"
+          [showError]="showError"
+        ></app-question-tree>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        [disabled]="disabled"
+        class="header-btn"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <button mat-button (click)="navigateToDashboard()" class="header-btn">
+        Z Score
+      </button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

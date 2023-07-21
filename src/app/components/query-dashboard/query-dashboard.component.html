@@ -1,0 +1,56 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Dashboard</h1>
+  <mat-card class="dashboard-card">
+    <mat-card-header>
+      <mat-card-title> Target Group </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="dashboard-card-content">
+      <div *ngFor="let answer of tgAnswers; index as i" class="answers-list">
+        <span>{{ answer.variable }} --- {{ answer.label }}</span>
+        <button mat-icon-button (click)="removeTGAnswer(i)">
+          <mat-icon class="mat-icon-rtl-mirror">clear</mat-icon>
+        </button>
+      </div>
+      <span *ngIf="!tgAnswers.length">No selections yet</span>
+    </mat-card-content>
+  </mat-card>
+  <br />
+  <mat-card class="dashboard-card">
+    <mat-card-header>
+      <mat-card-title> Control Group </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="dashboard-card-content">
+      <div *ngFor="let answer of cgAnswers; index as i" class="answers-list">
+        <span>{{ answer.variable }} --- {{ answer.label }}</span>
+        <button mat-icon-button (click)="removeCGAnswer(i)">
+          <mat-icon class="mat-icon-rtl-mirror">clear</mat-icon>
+        </button>
+      </div>
+      <span *ngIf="!cgAnswers.length">No selections yet</span>
+    </mat-card-content>
+  </mat-card>
+  <br />
+  <mat-card class="dashboard-card">
+    <mat-card-header>
+      <mat-card-title> Variables </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="dashboard-card-content">
+      <div *ngFor="let question of questions; index as i">
+        {{ question.variable }}
+        <button mat-icon-button (click)="removeQuestion(i)">
+          <mat-icon class="mat-icon-rtl-mirror">clear</mat-icon>
+        </button>
+      </div>
+      <span *ngIf="!questions.length">No selections yet</span>
+      <br />
+    </mat-card-content>
+  </mat-card>
+  <button
+    class="generate-btn"
+    mat-raised-button
+    color="primary"
+    (click)="routeToResults()"
+  >
+    Generate Z Score
+  </button>
+</div>

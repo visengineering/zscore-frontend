@@ -1,0 +1,34 @@
+<mat-tree
+  [dataSource]="dataSource"
+  [treeControl]="treeControl"
+  *ngIf="!showError"
+>
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+    <span>{{ node.variable }}</span>
+    <button mat-icon-button matTreeNodeToggle (click)="addQuestion(node)">
+      <mat-icon class="mat-icon-rtl-mirror"> add </mat-icon>
+    </button>
+  </mat-tree-node>
+
+  <mat-tree-node
+    *matTreeNodeDef="let node; when: hasChild"
+    matTreeNodePadding
+    class="mat-tree-node"
+  >
+    <button mat-icon-button matTreeNodeToggle (click)="getChildNodes(node)">
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{ treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right' }}
+      </mat-icon>
+    </button>
+    {{ node.label }}
+    <mat-progress-spinner
+      *ngIf="node.isLoading"
+      mode="indeterminate"
+      [diameter]="20"
+      class="tree-progress-bar"
+    ></mat-progress-spinner>
+  </mat-tree-node>
+</mat-tree>
+
+<br />
+<span *ngIf="showError" class="nav-error">No results found</span>

@@ -1,0 +1,95 @@
+<div *ngIf="dataSource" class="mat-elevation-z8">
+  <table mat-table class="full-width-table" [dataSource]="dataSource">
+    <ng-container matColumnDef="variable">
+      <th mat-header-cell class="text-center" *matHeaderCellDef>Variable</th>
+      <td mat-cell class="text-center" *matCellDef="let row">
+        {{ row.variable }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="answer">
+      <th mat-header-cell class="text-center" *matHeaderCellDef>Answer</th>
+      <td mat-cell class="text-center" *matCellDef="let row">
+        {{ row.answer }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="count">
+      <th mat-header-cell class="text-center" *matHeaderCellDef>Count</th>
+      <td mat-cell class="text-center" *matCellDef="let row">
+        {{ row.count }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="base">
+      <th mat-header-cell class="text-center" *matHeaderCellDef>Base</th>
+      <td mat-cell class="text-center" *matCellDef="let row">{{ row.base }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="count2">
+      <th mat-header-cell class="text-center" *matHeaderCellDef>Count</th>
+      <td mat-cell class="text-center" *matCellDef="let row">
+        {{ row.count2 }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="base2">
+      <th mat-header-cell class="text-center" *matHeaderCellDef>Base</th>
+      <td mat-cell class="text-center" *matCellDef="let row">
+        {{ row.base2 }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="zscore">
+      <th mat-header-cell class="text-center" *matHeaderCellDef>ZScore</th>
+      <td mat-cell class="text-center" *matCellDef="let row">
+        {{ row.zscore }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="header-row-spacer">
+      <th mat-header-cell *matHeaderCellDef [attr.colspan]="2"></th>
+    </ng-container>
+
+    <ng-container matColumnDef="header-row-first-group">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [attr.colspan]="2"
+        class="text-center"
+      >
+        Target Group
+      </th>
+    </ng-container>
+
+    <ng-container matColumnDef="header-row-second-group">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        [attr.colspan]="2"
+        class="text-center"
+      >
+        <span>Control Group</span>
+      </th>
+    </ng-container>
+
+    <ng-container matColumnDef="header-row-third-group">
+      <th mat-header-cell *matHeaderCellDef [attr.colspan]="1"></th>
+    </ng-container>
+
+    <tr
+      mat-header-row
+      *matHeaderRowDef="[
+        'header-row-spacer',
+        'header-row-first-group',
+        'header-row-second-group',
+        'header-row-third-group'
+      ]"
+    ></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <span *ngIf="noResult" class="no-data">No Result found</span>
+</div>
+
+<mat-spinner *ngIf="!dataSource"></mat-spinner>

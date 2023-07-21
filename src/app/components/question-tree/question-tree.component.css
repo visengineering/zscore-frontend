@@ -1,0 +1,22 @@
+.type-icon {
+  color: #757575;
+  margin-right: 5px;
+}
+
+.mat-tree {
+  padding-left: 10px;
+}
+
+.tree-progress-bar {
+  margin-left: 10px;
+}
+
+.mat-tree-node {
+  font-size: 12px;
+  padding-left: 30px;
+  padding-right: 25px;
+}
+
+.nav-error {
+  padding-left: 30px;
+}
